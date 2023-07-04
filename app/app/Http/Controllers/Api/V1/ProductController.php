@@ -33,7 +33,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $product = $this->product->create($request->all());
+        $product = $this->product->create($request->validated());
         return ProductResource::make($product);
     }
 
@@ -52,7 +52,7 @@ class ProductController extends Controller
     public function update(ProductRequest $request, string $id)
     {
         $product = $this->product->findOrFail($id);
-        $product->update($request->all());
+        $product->update($request->validated());
 
         return ProductResource::make($product);
     }
